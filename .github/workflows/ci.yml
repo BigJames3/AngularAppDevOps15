@@ -3,32 +3,43 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - main  # Déclenche le pipeline sur les pushes vers la branche main
+      - main  # Déclenche le pipeline sur les pushes vers la branche principale
   pull_request:
     branches:
-      - main  # Déclenche le pipeline sur les pull requests vers la branche main
+      - main  # Déclenche le pipeline sur les pull requests vers la branche principale
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Utilise la dernière version d'Ubuntu comme environnement de build
+    runs-on: windows-latest  # Utilise un environnement Windows pour .NET
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2  # Récupère le code source du dépôt
 
-    - name: Setup Node.js (pour Angular)
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0'  # Spécifie la version de .NET
+
+    - name: Restore .NET dependencies
+      run: dotnet restore  # Restaure les dépendances .NET
+
+    - name: Build the .NET application
+      run: dotnet build --configuration Release  # Compile l'application .NET
+
+    - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'  # Spécifie la version de Node.js
+        node-version: '16'  # Spécifie la version de Node.js
 
     - name: Install Angular CLI
       run: npm install -g @angular/cli  # Installe Angular CLI
 
-    - name: Install dependencies
-      run: npm install  # Installe les dépendances
+    - name: Install Angular dependencies
+      run: npm install  # Installe les dépendances Angular
 
-    - name: Build the application
-      run: ng build --prod  # Exécute la build de l'application
+    - name: Build the Angular application
+      run: ng build --prod  # Exécute la build de l'application Angular
 
-    - name: Run tests
-      run: ng test --watch=false  # Exécute les tests sans mode veille
+    - name: Run Angular tests
+      run: ng test --watch=false --browsers=ChromeHeadless  # Exécute les tests Angular
