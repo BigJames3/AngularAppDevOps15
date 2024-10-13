@@ -49,3 +49,7 @@ jobs:
         wget https://download.visualstudio.microsoft.com/download/pr/58f5d70c-5bce-4e7e-8233-f4a9f3c253d9/8a1c1b08f2c60b2460e8ec08678b439c/dotnet-sdk-8.0.100-rc.1-win-x64.zip
         unzip -qq dotnet-sdk-8.0.100-rc.1-win-x64.zip -d $HOME/dotnet
         export PATH="$HOME/dotnet:$PATH"
+
+    - name: Build the .NET application
+      run: dotnet build --configuration Release -v diag  # Ajoute l'option -v diag pour plus de détails
+
