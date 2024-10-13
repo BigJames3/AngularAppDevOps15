@@ -30,20 +30,24 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'  # Spécifie la version de Node.js
+        node-version: 'v18.18.2'  # Spécifie la version de Node.js
 
+    # Spécifier le chemin complet pour les commandes Angular
     - name: Install Angular CLI
-      run: npm install -g @angular/cli  # Installe Angular CLI
+      run: npm install -g @angular/cli
+      working-directory: ./angularappdevops15.client  # Définit le répertoire où se trouve package.json
 
     - name: Install Angular dependencies
-      run: npm install  # Installe les dépendances Angular
+      run: npm install
+      working-directory: ./angularappdevops15.client  # Définit le répertoire où se trouve package.json
 
     - name: Build the Angular application
-      run: ng build --prod  # Exécute la build de l'application Angular
+      run: ng build --prod
+      working-directory: ./angularappdevops15.client  # Définit le répertoire où se trouve package.json
 
     - name: Run Angular tests
-      run: ng test --watch=false --browsers=ChromeHeadless  # Exécute les tests Angular
+      run: ng test --watch=false --browsers=ChromeHeadless
+      working-directory: ./angularappdevops15.client  # Définit le répertoire où se trouve package.json
 
-    - name: Build the .NET application
-      run: dotnet build --configuration Release -v diag  # Ajoute l'option -v diag pour plus de détails
-
+    - name: Build the .NET application with diagnostic logs
+      run: dotnet build --configuration Release -v diag  # Compile l'application avec logs détaillés
