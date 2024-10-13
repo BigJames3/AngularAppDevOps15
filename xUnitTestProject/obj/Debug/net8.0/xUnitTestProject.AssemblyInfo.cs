@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("AngularAppDevOps15.Server")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("xUnitTestProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2199b80382b54fb0f3651d29f8beecab85b0491b")]
-[assembly: System.Reflection.AssemblyProductAttribute("AngularAppDevOps15.Server")]
-[assembly: System.Reflection.AssemblyTitleAttribute("AngularAppDevOps15.Server")]
+[assembly: System.Reflection.AssemblyProductAttribute("xUnitTestProject")]
+[assembly: System.Reflection.AssemblyTitleAttribute("xUnitTestProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Généré par la classe MSBuild WriteCodeFragment.
