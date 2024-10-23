@@ -1,9 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using AngularAppDevOps15.Server.Data; // Assure-toi de remplacer par l'espace de noms correct
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Ajout de la chaîne de connexion et du DbContext dans le conteneur de services
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Ajout des services au conteneur
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Pour plus d'informations sur la configuration de Swagger/OpenAPI, consultez https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -12,7 +19,7 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
+// Configure le pipeline de requêtes HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -20,7 +27,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();

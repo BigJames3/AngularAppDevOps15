@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\AngularAppDevOps15.Server.props" />
+</Project>
